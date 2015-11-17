@@ -3,12 +3,12 @@
 A client-side JavaScript library that makes uploading images to S3 easier than
 any alternative.
 
-By having a [LibPixel](http://libpixel.com) account, we'll handle all the S3
-request signing and server-side redirects. You won't even need to add a blank
-page to your website just to support older browser. All that has been done for
-you. In fact you won't need to touch your server-side code at all.
+[LibPixel](http://libpixel.com) will handle all the complexity of S3 request
+signing and server-side redirects. You won't even need to add a blank page to
+your website just to support older browsers. All that has been done for you. In
+fact you won't need to touch your server-side code at all.
 
-It supports pretty much every browser starting with IE 8, weighs only 2.7KB
+It supports pretty much every browser starting with IE 8, it weighs only 2.7KB
 (minified + gzipped), and has no dependencies.
 
 ## Getting started
@@ -23,21 +23,23 @@ $ npm install libpixel-uploader
 var LibPixelUploader = require("libpixel-uploader");
 ```
 
-Alternatively, you can download a release and include it:
+Alternatively, you can download a release and include it in your page:
 
 ```html
 <script src="/path/to/libpixel-uploader.min.js"></script>
 ```
 
-In LibPixel, all you need is a source configured for S3, with uploads enabled.
+In your LibPixel account, all you need is a source configured with
+your S3 bucket.
+The S3 bucket must have uploads enabled.
 
-Assuming your source's path is `/uploads` and your LibPixel domain is
+Assuming your source's path is `/eu-west-1/uploads` and your LibPixel domain is
 `test.libpx.com`, you'd configure the uploader as:
 
 ```js
 var uploader = LibPixelUploader({
   host: "test.libpx.com",
-  source: "uploads",
+  source: "eu-west-1/uploads",
   element: "#file-input"
 });
 ```
@@ -47,20 +49,23 @@ options.
 
 ## Uploading
 
-There are two ways of triggering the file upload: automatically and manually.
+On your page will be a form which will be used to upload the images. Once the
+user has selected a file, there are two ways of triggering the file upload:
+automatically and manually.
 
 ### Automatically
 
 The automatic way binds event listeners to the file input's form and uploads the
-image when the form submission is triggered by the user. You can use this option
+image when the form submission is triggered. You can use this option
 by calling `addEventListeners()` on the uploader object:
 
 ```js
 uploader.addEventListeners();
 ```
 
-Below is a description of the flow of events and what the uploader does
-automatically:
+So as soon as the form is submitted, the upload to S3 will automatically start.
+
+Behind the scenes, this is what the LibPixel Uploader does for you:
 
 - When the user triggers the form submission:
   - Image upload starts.
@@ -104,6 +109,10 @@ To manually trigger an upload, just call `upload()` on the uploader object:
 uploader.upload();
 ```
 
+For this to work, the file element must already have a file selected, otherwise
+either nothing will happen or the error callback will be called depending on the
+`required` option setting.
+
 <div id="options"></div>
 ## Options
 
@@ -119,8 +128,8 @@ of the following ways:
 
 ### source
 
-The LibPixel source path, without the leading `/` (e.g. `"uploads"` or
-`"eu-west-1/uploads"`).
+The LibPixel source path, without the leading `/` (e.g. `"us-east-1/userimages"`
+or `"eu-west-1/uploads"`).
 
 ### host
 
@@ -131,6 +140,13 @@ The LibPixel host, without a protocol (e.g. `"test.libpx.com"`).
 Whether choosing a file is required when submitting the form when using
 `addEventListeners()` or when calling `upload()`. Default is `true` (file is
 required).
+
+If no file is set and the form is submitted with `required` set to `true`, then
+the error callback will be called.
+
+If `required` is set to `false`, then the form can be submitted without a file
+set, and any other fields in the form will be submitted to your server without
+any interference by the LibPixel Uploader.
 
 ### mode
 
@@ -162,7 +178,7 @@ uploader.progress(function (event) {
 ```
 
 Each event listener definition function returns the upload object, so you can
-chain multiple listener definitions if you want:
+chain multiple event callback definitions if you want:
 
 ```js
 uploader.start(function (event) {
@@ -210,8 +226,8 @@ Called whenever an error occurs.
 The event object contains the following keys:
 
 - `id`: string that uniquely identifies this upload.
-- `message`: message describing the error, in English. See [I18n](#i18n) to learn
-  how to customize these messages.
+- `message`: message describing the error, in English. See [I18n](#i18n) to
+  learn how to customize these messages.
 
 <div id="i18n"></div>
 ## I18n
@@ -242,7 +258,7 @@ The available message keys and their default values are:
 
 ## Contributing
 
-If you wish to contribute, you'll probably need to get the project up and
+If you wish to contribute, start by getting the project up and
 running. You'll need a recent version of Node.js. After cloning the GitHub repo
 you'll need to install all the development dependencies with NPM:
 
@@ -264,7 +280,8 @@ tasks for development are:
 
 ### Testing
 
-There are both unit tests and end-to-end tests that run in real browser environments (via Sauce Labs with Selenium).
+There are both unit tests and end-to-end tests that run in real browser
+environments (via Sauce Labs with Selenium).
 
 Unit tests can be run locally with [Karma](http://karma-runner.github.io/):
 
@@ -275,8 +292,8 @@ $ gulp test:unit
 End-to-end tests require a [Sauce Labs](https://saucelabs.com) account and Sauce
 Connect.
 
-You need to export the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment
-variables with your credentials.
+Set the `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` environment variables to contain
+your credentials and export them.
 
 You must start Sauce Connect with the following options:
 
