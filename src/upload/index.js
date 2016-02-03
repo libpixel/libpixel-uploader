@@ -26,6 +26,9 @@ module.exports = function (options, start, progress, success, error) {
     cancel: function () { cancel(); }
   };
 
+  var match = options.element.value.match(/\.([0-9a-z]+)$/i);
+  var extension = match ? match[1] : "";
+
   var acceptedExtensions = new RegExp("\\.(" + constants.ACCEPTED_EXTENSIONS.join("|") + ")$", "i");
 
   if (options.required === false && options.element.value === "") {
@@ -56,7 +59,8 @@ module.exports = function (options, start, progress, success, error) {
   var url = urlAppend("https://" + options.host + "/_uploader/" + options.source,
               "mode=" + (useXHRUpload ? "xhr" : "iframe") +
               "&origin=" + encodeURIComponent(origin()) +
-              "&id=" + id
+              "&id=" + id +
+              "&extension=" + extension
             );
 
   getJSON(url, function (err, data) {
