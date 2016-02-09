@@ -46,8 +46,9 @@ module.exports = function (options, start, progress, success, error) {
   }
 
   if (!acceptedExtensions.test(options.element.value)) {
+    var message = messages.invalidExtension + " " + options.acceptedExtensions.join(", ");
     nextTick(function () {
-      error({ id: id, message: messages.invalidExtension });
+      error({ id: id, message: message });
     });
     return ret;
   }
