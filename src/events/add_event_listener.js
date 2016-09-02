@@ -3,7 +3,7 @@ var eventListeners = require("events/store");
 module.exports = function (element, type, preventDefault, listener) {
   var wrapper;
 
-  if (Element.prototype.addEventListener === undefined) {
+  if (element.addEventListener === undefined) {
     wrapper = function () {
       listener.apply(null, arguments);
       if (preventDefault) {

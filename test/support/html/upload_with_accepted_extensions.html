@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="/dist/uploader.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <form action="done.html">
+      <input type="file" name="key" id="file" />
+      <input type="submit" value="Submit" id="submit" />
+    </form>
+    <script>
+      LibPixelUploader({
+        element: "#file",
+        host: "libpixel.libpx.com",
+        source: "uploader",
+        acceptedExtensions: ["png", "ico"]
+      }).error(function (event) {
+        var div = document.createElement("div");
+        div.id = "error";
+        div.innerText = div.textContent = event.message;
+        document.body.appendChild(div);
+      }).addEventListeners();
+    </script>
+  </body>
+</html>
