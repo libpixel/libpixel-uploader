@@ -1,4 +1,4 @@
-var eventListeners = require("events/store");
+var eventListeners = require("../events/store");
 
 module.exports = function (element, type, listener) {
   var counter = 0;

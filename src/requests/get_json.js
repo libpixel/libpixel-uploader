@@ -1,8 +1,8 @@
-var addEventListener = require("events/add_event_listener");
-var removeEventListener = require("events/remove_event_listener");
-var make = require("dom/make");
-var urlAppend = require("util/url_append");
-var identifier = require("util/identifier");
+var addEventListener = require("../events/add_event_listener");
+var removeEventListener = require("../events/remove_event_listener");
+var make = require("../dom/make");
+var urlAppend = require("../util/url_append");
+var identifier = require("../util/identifier");
 
 function getJSONWithXHR(url, callback) {
   var xhr = new XMLHttpRequest();

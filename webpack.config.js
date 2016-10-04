@@ -13,8 +13,5 @@ module.exports = {
 		library: "LibPixelUploader",
 		libraryTarget: "var"
 	},
-	resolve: {
-		root: path.join(__dirname, "src")
-	},
 	plugins: []
 };

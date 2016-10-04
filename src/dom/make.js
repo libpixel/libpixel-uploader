@@ -1,4 +1,4 @@
-var each = require("util/each");
+var each = require("../util/each");
 
 module.exports = function (type, attributes) {
   var el = document.createElement(type);

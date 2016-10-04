@@ -1,11 +1,11 @@
-var upload = require("upload");
-var addEventListener = require("events/add_event_listener");
-var removeEventListener = require("events/remove_event_listener");
-var findAncestor = require("dom/find_ancestor");
-var make = require("dom/make");
-var noop = require("util/noop");
-var err = require("util/error");
-var messages = require("messages");
+var upload = require("./upload");
+var addEventListener = require("./events/add_event_listener");
+var removeEventListener = require("./events/remove_event_listener");
+var findAncestor = require("./dom/find_ancestor");
+var make = require("./dom/make");
+var noop = require("./util/noop");
+var err = require("./util/error");
+var messages = require("./messages");
 
 var LibPixelUploader = function (options) {
   if (options.element === undefined) {

@@ -1,10 +1,10 @@
-var each = require("util/each");
-var addEventListener = require("events/add_event_listener");
-var removeEventListener = require("events/remove_event_listener");
-var make = require("dom/make");
-var constants = require("constants");
-var identifier = require("util/identifier");
-var noop = require("util/noop");
+var each = require("../util/each");
+var addEventListener = require("../events/add_event_listener");
+var removeEventListener = require("../events/remove_event_listener");
+var make = require("../dom/make");
+var constants = require("../constants");
+var identifier = require("../util/identifier");
+var noop = require("../util/noop");
 
 module.exports = function (id, element, url, data, progress, success, error) {
   var name = "uploader-iframe-" + identifier();

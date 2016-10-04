@@ -1,4 +1,4 @@
-var each = require("util/each");
+var each = require("../util/each");
 
 module.exports = function (id, element, url, data, progress, success, error) {
   var xhr = new XMLHttpRequest();

@@ -1,10 +1,10 @@
-var getJSON = require("requests/get_json");
-var uploadWithXHR = require("upload/xhr");
-var uploadWithIframe = require("upload/iframe");
-var constants = require("constants");
-var urlAppend = require("util/url_append");
-var identifier = require("util/identifier");
-var nextTick = require("util/next_tick");
+var getJSON = require("../requests/get_json");
+var uploadWithXHR = require("../upload/xhr");
+var uploadWithIframe = require("../upload/iframe");
+var constants = require("../constants");
+var urlAppend = require("../util/url_append");
+var identifier = require("../util/identifier");
+var nextTick = require("../util/next_tick");
 
 function origin() {
   if (window.location.origin) {
