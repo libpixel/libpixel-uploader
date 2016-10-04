@@ -1,6 +1,6 @@
 {
   "name": "libpixel-uploader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Library that makes uploading images to S3 easier than any alternative.",
   "main": "src/index.js",
   "scripts": {
