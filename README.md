@@ -30,8 +30,11 @@ Alternatively, you can download a release and include it in your page:
 ```
 
 In your LibPixel account, all you need is a source configured with
-your S3 bucket.
-The S3 bucket must have uploads enabled.
+your S3 bucket, and uploads enabled.
+
+Your S3 bucket needs to be configured for CORS. You can find the CORS
+configuration [here](#cors), and instructions on how to configure it from the
+[S3 User Guide](http://docs.aws.amazon.com/AmazonS3/latest/UG/EditingBucketPermissions.html).
 
 Assuming your source's path is `/eu-west-1/uploads` and your LibPixel domain is
 `test.libpx.com`, you'd configure the uploader as:
@@ -254,6 +257,21 @@ The available message keys and their default values are:
   fileNotSelected: "You must select a file to upload",
   invalidExtension: "File must be a JPEG, PNG, WebP or GIF image"
 }
+```
+
+<div id="cors"></div>
+## AWS S3 CORS configuration
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+    <CORSRule>
+        <AllowedOrigin>*</AllowedOrigin>
+        <AllowedMethod>POST</AllowedMethod>
+        <MaxAgeSeconds>3000</MaxAgeSeconds>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+</CORSConfiguration>
 ```
 
 ## Contributing
