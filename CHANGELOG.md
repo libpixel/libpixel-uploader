@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [2.0.0]
 ### Added
 - Support for custom extensions to be accepted by the uploader.
+
 ### Changed
 - `LibPixelUploader.messages` object can only be modified, not reassigned.
 - `upload()` may be called again after an upload successfully finishes.
