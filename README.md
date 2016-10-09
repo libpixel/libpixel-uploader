@@ -235,21 +235,15 @@ The event object contains the following keys:
 <div id="i18n"></div>
 ## I18n
 
-If you wish to customize the error messages, you can modify or replace the
+If you wish to customize the error messages, you can modify the
 `LibPixelUploader.messages` object:
-
-```js
-LibPixelUploader.messages = {
-  fileNotSelected: "You must select a file to upload",
-  // ...
-};
-```
-
-Or to modify a single message:
 
 ```js
 LibPixelUploader.messages.fileNotSelected = "You must select a file to upload";
 ```
+
+*Important:* you must always modify the `messages` object, and never reassign
+it.
 
 The available message keys and their default values are:
 ```js

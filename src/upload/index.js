@@ -5,6 +5,7 @@ var constants = require("../constants");
 var urlAppend = require("../util/url_append");
 var identifier = require("../util/identifier");
 var nextTick = require("../util/next_tick");
+var messages = require("../messages");
 
 function origin() {
   if (window.location.origin) {
@@ -16,7 +17,6 @@ function origin() {
 
 module.exports = function (options, start, progress, success, error) {
   var id = identifier();
-  var messages = LibPixelUploader.messages;
 
   var cancelled = false,
       cancel = function() { cancelled = true; };
