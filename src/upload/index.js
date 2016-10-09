@@ -1,7 +1,6 @@
 var getJSON = require("../requests/get_json");
 var uploadWithXHR = require("../upload/xhr");
 var uploadWithIframe = require("../upload/iframe");
-var constants = require("../constants");
 var urlAppend = require("../util/url_append");
 var identifier = require("../util/identifier");
 var nextTick = require("../util/next_tick");
@@ -29,7 +28,7 @@ module.exports = function (options, start, progress, success, error) {
   var match = options.element.value.match(/\.([0-9a-z]+)$/i);
   var extension = match ? match[1] : "";
 
-  var acceptedExtensions = new RegExp("\\.(" + constants.ACCEPTED_EXTENSIONS.join("|") + ")$", "i");
+  var acceptedExtensions = new RegExp("\\.(" + options.acceptedExtensions.join("|") + ")$", "i");
 
   if (options.required === false && options.element.value === "") {
     nextTick(function () {
@@ -46,8 +45,9 @@ module.exports = function (options, start, progress, success, error) {
   }
 
   if (!acceptedExtensions.test(options.element.value)) {
+    var message = messages.invalidExtension + " " + options.acceptedExtensions.join(", ");
     nextTick(function () {
-      error({ id: id, message: messages.invalidExtension });
+      error({ id: id, message: message });
     });
     return ret;
   }

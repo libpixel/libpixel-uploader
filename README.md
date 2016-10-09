@@ -249,7 +249,7 @@ The available message keys and their default values are:
 ```js
 {
   fileNotSelected: "You must select a file to upload",
-  invalidExtension: "File must be a JPEG, PNG, WebP or GIF image"
+  invalidExtension: "File must have one of the following extensions:"
 }
 ```
 

@@ -6,6 +6,7 @@ var make = require("./dom/make");
 var noop = require("./util/noop");
 var err = require("./util/error");
 var messages = require("./messages");
+var constants = require("./constants");
 
 var LibPixelUploader = function (options) {
   if (options.element === undefined) {
@@ -72,7 +73,8 @@ var LibPixelUploader = function (options) {
       host: options.host,
       source: options.source,
       mode: options.mode,
-      required: options.required
+      required: options.required,
+      acceptedExtensions: options.acceptedExtensions || constants.ACCEPTED_EXTENSIONS
     }, onStart, onProgress, onSuccess, onError);
 
     if (currentUploadID) {

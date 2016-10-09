@@ -7,7 +7,7 @@ module.exports = function (element, type, listener) {
     var eventListener = eventListeners[counter];
 
     if (eventListener.element === element && eventListener.type === type && eventListener.listener.toString() === listener.toString()) {
-      if (Element.prototype.addEventListener === undefined) {
+      if (element.addEventListener === undefined) {
         element.detachEvent("on" + type, eventListener.wrapper);
       } else {
         element.removeEventListener(type, eventListener.wrapper);
