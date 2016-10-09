@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [UNRELEASED]
 ### Changed
+- `upload()` may be called again after an upload successfully finishes.
 - `LibPixelUploader.messages` object can only be modified, not reassigned.
 
 ## [1.1.1] - 2016-10-04

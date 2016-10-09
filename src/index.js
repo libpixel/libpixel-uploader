@@ -102,7 +102,7 @@ var LibPixelUploader = function (options) {
       return uploader;
     },
     upload: function () {
-      if (state === undefined || state === "error") {
+      if (state === undefined || state === "error" || state === "done") {
         uploadFn();
       }
       return uploader;
